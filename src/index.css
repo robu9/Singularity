@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: 60 20% 96%;
+    --foreground: 70 14% 18%;
+    --surface: 60 24% 98%;
+    --surface-secondary: 60 16% 94%;
+    --surface-tertiary: 60 14% 91%;
+    --card: 60 24% 98%;
+    --card-foreground: 70 14% 18%;
+    --card-hover: 60 16% 94%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 70 14% 18%;
+    --primary: 74 30% 38%;
+    --primary-foreground: 60 24% 98%;
+    --primary-hover: 74 32% 31%;
+    --primary-muted: 70 22% 90%;
+    --secondary: 60 16% 94%;
+    --secondary-foreground: 70 14% 18%;
+    --secondary-hover: 60 14% 91%;
+    --destructive: 4 62% 46%;
+    --destructive-foreground: 60 24% 98%;
+    --destructive-hover: 4 62% 39%;
+    --destructive-muted: 6 60% 96%;
+    --muted: 60 16% 94%;
+    --muted-foreground: 68 8% 45%;
+    --accent: 60 16% 94%;
+    --accent-foreground: 70 14% 18%;
+    --accent-hover: 60 14% 91%;
+    --border: 65 12% 86%;
+    --input: 65 12% 86%;
+    --input-focus: 74 30% 38%;
+    --ring: 74 30% 38%;
+    --sidebar-background: 60 16% 94%;
+    --sidebar-foreground: 70 14% 18%;
+    --sidebar-primary: 74 30% 38%;
+    --sidebar-primary-foreground: 60 24% 98%;
+    --sidebar-accent: 60 14% 91%;
+    --sidebar-accent-foreground: 70 14% 18%;
+    --sidebar-border: 65 12% 86%;
+    --sidebar-ring: 74 30% 38%;
+    --radius: 0.625rem;
+    --font-size-base: 14px;
+    --text-xs: calc(var(--font-size-base) * 0.857);
+    --text-sm: calc(var(--font-size-base) * 0.929);
+    --text-base: var(--font-size-base);
+    --text-lg: calc(var(--font-size-base) * 1.143);
+    --text-xl: calc(var(--font-size-base) * 1.286);
+    --text-2xl: calc(var(--font-size-base) * 1.571);
+    --text-3xl: calc(var(--font-size-base) * 1.857);
+    --text-4xl: calc(var(--font-size-base) * 2.286);
+  }
+
+  .dark {
+    color-scheme: dark;
+    --background: 0 6% 10%;
+    --foreground: 65 44% 89%;
+    --surface: 36 9% 11%;
+    --surface-secondary: 36 7% 13%;
+    --surface-tertiary: 36 6% 15%;
+    --card: 36 7% 13%;
+    --card-foreground: 65 44% 89%;
+    --card-hover: 36 6% 15%;
+    --popover: 36 7% 13%;
+    --popover-foreground: 65 44% 89%;
+    --primary: 68 50% 74%;
+    --primary-foreground: 0 6% 10%;
+    --primary-hover: 66 33% 74%;
+    --primary-muted: 36 6% 15%;
+    --secondary: 36 6% 15%;
+    --secondary-foreground: 68 50% 74%;
+    --secondary-hover: 36 7% 13%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-hover: 0 72% 45%;
+    --destructive-muted: 0 40% 16%;
+    --muted: 36 6% 15%;
+    --muted-foreground: 66 18% 48%;
+    --accent: 36 6% 15%;
+    --accent-foreground: 68 50% 74%;
+    --accent-hover: 36 7% 18%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --input-focus: 68 50% 74%;
+    --ring: 68 50% 74%;
+    --sidebar-background: 0 6% 10%;
+    --sidebar-foreground: 65 44% 89%;
+    --sidebar-primary: 68 50% 74%;
+    --sidebar-primary-foreground: 0 6% 10%;
+    --sidebar-accent: 36 6% 15%;
+    --sidebar-accent-foreground: 68 50% 74%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 67 32% 32%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    background-color: hsl(var(--background));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    margin: 0;
+    overflow: hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Fraunces", "Times New Roman", serif;
+    text-wrap: balance;
+  }
+
+  html,
+  body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  *,
+  button,
+  a {
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  input,
+  textarea,
+  [contenteditable] {
+    user-select: text !important;
+  }
+
+  .prose,
+  .prose * {
+    user-select: text !important;
+    cursor: text !important;
+  }
+
+  .prose::selection,
+  .prose *::selection {
+    background-color: hsl(var(--primary) / 0.15) !important;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-minimal {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.35) transparent;
+  }
+  .scrollbar-minimal::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-minimal::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 999px;
+  }
+
+  /* Electron window dragging. macOS uses titleBarStyle "hiddenInset", so the
+     app's own header has to provide the drag surface; interactive children
+     must opt back out with .no-drag or they stop receiving clicks. */
+  .drag-region {
+    -webkit-app-region: drag;
+  }
+
+  .no-drag {
+    -webkit-app-region: no-drag;
+  }
+
+  .vibrant-sidebar {
+    background-color: hsl(var(--sidebar-background) / 0.92) !important;
+    backdrop-filter: blur(12px);
+    border-color: hsl(var(--sidebar-border) / 0.8) !important;
+  }
+}
+
+@layer components {
+  /* Page titles, cards, and empty states are components now — see
+     src/components/ui/. Only the sidebar nav row stays as a class, because it
+     is styled identically from two different nav sources. */
+  .nav-item {
+    @apply flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm font-medium text-muted-foreground transition-colors duration-fast;
+  }
+
+  .nav-item:hover {
+    @apply bg-accent text-foreground;
+  }
+
+  .nav-item-active {
+    @apply bg-primary/10 text-primary;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
