@@ -57,6 +57,7 @@ export default function App() {
   const theme = useSettingsStore((s) => s.settings.theme);
   return (
     <ThemeProvider>
+      <div className="ambient-bg" aria-hidden="true" />
       <HashRouter>
         <AppRoutes />
       </HashRouter>

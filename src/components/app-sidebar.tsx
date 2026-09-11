@@ -8,6 +8,7 @@ import React, {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
+import { PanelLeftClose } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSettingsStore } from "@/lib/stores/settings-store";
 
@@ -16,9 +17,15 @@ const useIsomorphicLayoutEffect =
 
 interface SidebarContextValue {
   isTranslucent: boolean;
+  isOpen: boolean;
+  toggle: () => void;
 }
 
-const SidebarContext = createContext<SidebarContextValue>({ isTranslucent: false });
+const SidebarContext = createContext<SidebarContextValue>({
+  isTranslucent: false,
+  isOpen: true,
+  toggle: () => {},
+});
 
 export function useSidebarContext() {
   return useContext(SidebarContext);
@@ -27,10 +34,14 @@ export function useSidebarContext() {
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const translucentSidebar = useSettingsStore((s) => s.settings.translucentSidebar);
   const isTranslucent = translucentSidebar !== false;
-
-  return (
-    <SidebarContext.Provider value={{ isTranslucent }}>{children}</SidebarContext.Provider>
+  const [isOpen, setIsOpen] = useState(true);
+  const toggle = useCallback(() => setIsOpen((o) => !o), []);
+  const value = useMemo(
+    () => ({ isTranslucent, isOpen, toggle }),
+    [isTranslucent, isOpen, toggle]
   );
+
+  return <SidebarContext.Provider value={value}>{children}</SidebarContext.Provider>;
 }
 
 const DEFAULT_WIDTH = 220;
@@ -49,7 +60,7 @@ interface SidebarShellContextValue {
 const SidebarShellContext = createContext<SidebarShellContextValue | null>(null);
 
 export function AppSidebarLayout({ children }: { children: React.ReactNode }) {
-  const { isTranslucent } = useSidebarContext();
+  const { isTranslucent, toggle } = useSidebarContext();
   const [width, setWidth] = useState(() => {
     const stored = localStorage.getItem("singularity-sidebar-width");
     return stored ? Number(stored) : DEFAULT_WIDTH;
@@ -101,19 +112,16 @@ export function AppSidebarLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <SidebarShellContext.Provider value={shellValue}>
-      <div
-        className={cn(
-          "flex h-screen min-h-0 overflow-hidden",
-          isTranslucent ? "bg-transparent" : "bg-background"
-        )}
-      >
+      <div className="flex h-screen min-h-0 overflow-hidden bg-transparent">
         {slot && (
           <div
             style={{ width }}
             className={cn(
-              "relative flex flex-col min-h-0 flex-shrink-0 border-r",
+              "relative my-2 ml-2 flex flex-col min-h-0 flex-shrink-0 rounded-2xl border",
               isResizing || !hydrated ? "" : "transition-[width] duration-slow",
-              isTranslucent ? "vibrant-sidebar" : "bg-sidebar border-sidebar-border",
+              isTranslucent
+                ? "vibrant-sidebar shadow-glass"
+                : "border-sidebar-border bg-sidebar shadow-glass-sm",
               slot.className
             )}
           >
@@ -121,10 +129,23 @@ export function AppSidebarLayout({ children }: { children: React.ReactNode }) {
               The sidebar is a full-height column beside the page, so the app
               header does not cover it. Reserve the header's height here or the
               macOS traffic lights (titleBarStyle "hiddenInset") land on top of
-              the first nav item. Doubles as a drag handle and lines the first
-              item up with the page title.
+              the brand row. Also doubles as a drag handle, and now carries the
+              app brand + the sidebar collapse control (moved out of the
+              content header so workspace identity lives in the rail).
             */}
-            <div className="drag-region h-12 shrink-0" />
+            <div className="drag-region flex h-12 shrink-0 items-center justify-between px-3">
+              <span className="text-sm font-semibold tracking-tight text-foreground">
+                Singularity
+              </span>
+              <button
+                type="button"
+                onClick={toggle}
+                aria-label="Hide sidebar"
+                className="no-drag inline-flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground transition-colors duration-fast hover:bg-foreground/10 hover:text-foreground"
+              >
+                <PanelLeftClose className="h-4 w-4" />
+              </button>
+            </div>
             <div
               ref={setContainer}
               className="flex flex-col min-h-0 flex-1 overflow-x-hidden overflow-y-auto scrollbar-hide px-2 pb-3"

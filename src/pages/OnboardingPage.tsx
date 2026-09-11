@@ -122,11 +122,11 @@ function PermissionsSlide({ onNext }: { onNext: () => void }) {
         )
       }
     >
-      <div className="flex flex-col rounded-lg border border-border overflow-hidden">
+      <div className="glass-panel flex flex-col rounded-xl overflow-hidden">
         {permissions.map((permission) => (
           <div
             key={permission.id}
-            className="flex items-center justify-between px-4 py-3 border-b border-border last:border-b-0"
+            className="flex items-center justify-between px-4 py-3 border-b border-foreground/10 last:border-b-0"
           >
             <span className="text-sm font-medium">{permission.name}</span>
             <Button
@@ -190,11 +190,11 @@ function EngineSlide({ onNext }: { onNext: () => void }) {
         </Button>
       }
     >
-      <div className="rounded-lg border border-border p-6 flex flex-col items-center gap-4 bg-surface">
+      <div className="glass-panel rounded-xl p-6 flex flex-col items-center gap-4">
         <div
           className={cn(
             "w-3 h-3 rounded-full",
-            status === "ready" && "bg-foreground",
+            status === "ready" && "bg-primary shadow-glow",
             status === "starting" && "bg-muted-foreground animate-pulse",
             status === "error" && "bg-destructive",
             status === "idle" && "bg-muted"
@@ -292,20 +292,20 @@ function ConnectAppsSlide({ onNext }: { onNext: () => void }) {
       {loading && <p className="text-sm text-muted-foreground">Loading…</p>}
 
       {!loading && !configured && (
-        <p className="text-sm text-muted-foreground rounded-lg border border-border p-4">
+        <p className="glass-panel text-sm text-muted-foreground rounded-xl p-4">
           Connectors aren&apos;t configured yet. You can set them up later from the
           Connections panel.
         </p>
       )}
 
       {!loading && configured && (
-        <div className="flex flex-col rounded-lg border border-border overflow-hidden">
+        <div className="glass-panel flex flex-col rounded-xl overflow-hidden">
           {connectors.map((conn) => {
             const isBusy = busy.has(conn.toolkit);
             return (
               <div
                 key={conn.toolkit}
-                className="flex items-center justify-between px-4 py-3 border-b border-border last:border-b-0"
+                className="flex items-center justify-between px-4 py-3 border-b border-foreground/10 last:border-b-0"
               >
                 <span className="text-sm font-medium">
                   {conn.name}
@@ -362,7 +362,7 @@ function PickWorkflowSlide({ onComplete }: { onComplete: () => void }) {
           <button
             key={routine.id}
             onClick={onComplete}
-            className="rounded-lg border border-border px-4 py-3 text-left transition-colors duration-fast hover:bg-accent"
+            className="glass-panel rounded-xl px-4 py-3 text-left transition-colors duration-fast hover:border-primary/30"
           >
             <span className="block text-sm font-medium">{routine.name}</span>
             <span className="mt-0.5 block text-xs text-muted-foreground">
@@ -414,7 +414,7 @@ export function OnboardingPage() {
   return (
     <div
       className={cn(
-        "bg-background transition-opacity duration-slow",
+        "bg-transparent transition-opacity duration-slow",
         visible ? "opacity-100" : "opacity-0"
       )}
     >

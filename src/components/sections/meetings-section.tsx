@@ -158,8 +158,8 @@ export function MeetingsSection() {
     <div className="flex flex-col h-full min-h-0 min-w-0">
       <PageHeader title="Recordings" description={findMainSection("meetings")?.description} />
       <div className="flex flex-1 min-h-0 min-w-0">
-        <div className="w-72 border-r border-border overflow-y-auto scrollbar-hide shrink-0 bg-surface">
-          <div className="px-4 py-3 border-b border-border">
+        <div className="w-72 border-r border-foreground/10 overflow-y-auto scrollbar-hide shrink-0 bg-surface/30 backdrop-blur-md">
+          <div className="px-4 py-3 border-b border-foreground/10">
             <span className="text-xs font-medium text-muted-foreground">All Recordings</span>
           </div>
           {loading ? (
@@ -174,15 +174,15 @@ export function MeetingsSection() {
                 key={m.id}
                 onClick={() => setSelectedId(m.id)}
                 className={cn(
-                  "w-full px-4 py-3 border-b border-border text-left transition-colors duration-fast",
+                  "w-full px-4 py-3 border-b border-foreground/10 text-left transition-colors duration-fast",
                   selectedId === m.id
-                    ? "bg-accent"
-                    : "hover:bg-accent/60"
+                    ? "bg-primary/15 shadow-[inset_0_0_0_1px_hsl(var(--primary)/0.25)]"
+                    : "hover:bg-foreground/[0.06]"
                 )}
               >
                 <div className="text-sm font-medium flex items-center gap-2">
                   {m.live && (
-                    <span className="w-2 h-2 rounded-full bg-foreground animate-pulse shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-primary shadow-glow animate-pulse shrink-0" />
                   )}
                   <span className="truncate">{meetingTitle(m)}</span>
                 </div>
@@ -199,7 +199,7 @@ export function MeetingsSection() {
         <div className="flex-1 flex flex-col min-h-0 min-w-0">
           {selectedId !== null && detail ? (
             <>
-              <div className="px-6 py-4 border-b border-border flex items-center justify-between gap-3">
+              <div className="px-6 py-4 border-b border-foreground/10 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2 min-w-0">
                   <Mic
                     className={cn("w-4 h-4 shrink-0", detail.live && "animate-pulse")}
@@ -270,7 +270,7 @@ export function MeetingsSection() {
                   ))
                 )}
               </div>
-              <div className="border-t border-border p-4">
+              <div className="border-t border-foreground/10 p-4">
                 <Textarea
                   value={notes}
                   onChange={(e) => onNotesChange(e.target.value)}

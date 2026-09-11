@@ -2,15 +2,15 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const cardVariants = cva("rounded-lg border border-border transition-colors duration-fast", {
+const cardVariants = cva("rounded-xl border transition-all duration-fast", {
   variants: {
     variant: {
-      // Raised surface for content that sits on the page background.
-      default: "bg-card",
+      // Raised glass surface for content that sits on the page background.
+      default: "glass-panel text-card-foreground",
       // Recedes into the page — for grouped settings and read-only detail.
-      muted: "bg-surface",
+      muted: "border-border/40 bg-surface/30 backdrop-blur-md",
       // Outline only, for placeholders and drop targets.
-      ghost: "bg-transparent",
+      ghost: "border-border/30 bg-transparent",
     },
     padding: {
       none: "",
@@ -19,7 +19,7 @@ const cardVariants = cva("rounded-lg border border-border transition-colors dura
       lg: "p-6",
     },
     interactive: {
-      true: "cursor-pointer hover:border-primary/25 hover:bg-card-hover",
+      true: "cursor-pointer hover:border-primary/30 hover:shadow-glow",
       false: "",
     },
   },

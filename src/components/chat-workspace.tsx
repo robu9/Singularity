@@ -14,7 +14,7 @@ export function ChatWorkspace({ className }: { className?: string }) {
       <div className="min-w-0 flex-1">
         <ChatPanel />
       </div>
-      <aside className="hidden min-h-0 w-64 shrink-0 flex-col border-l border-border bg-surface lg:flex">
+      <aside className="hidden min-h-0 w-64 shrink-0 flex-col border-l border-foreground/10 bg-surface/30 backdrop-blur-md lg:flex">
         <ChatSidebar />
       </aside>
     </div>

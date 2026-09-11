@@ -183,7 +183,7 @@ export function BrainSection() {
         </div>
 
         {detailNode && selectedId && (
-          <aside className="shrink-0 z-20 w-96 border-l border-border">
+          <aside className="shrink-0 z-20 w-96 border-l border-foreground/10">
             <MemoryNodeDetail
               node={detailNode}
               graph={graph}

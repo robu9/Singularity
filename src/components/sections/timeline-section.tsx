@@ -190,7 +190,7 @@ export function TimelineSection() {
       )}
 
       <div className="flex-1 flex flex-col min-h-0 min-w-0 p-6 gap-4 overflow-hidden">
-        <div className="flex-1 rounded-lg border border-border bg-surface flex items-center justify-center relative min-h-[300px] overflow-hidden">
+        <div className="flex-1 rounded-xl border border-foreground/10 bg-surface/40 backdrop-blur-sm flex items-center justify-center relative min-h-[300px] overflow-hidden">
           {imageSrc && !imageError ? (
             <img
               src={imageSrc}
@@ -210,7 +210,7 @@ export function TimelineSection() {
               )}
             </div>
           )}
-          <div className="absolute bottom-0 left-0 right-0 bg-background/90 backdrop-blur-sm border-t border-border p-3">
+          <div className="absolute bottom-0 left-0 right-0 bg-background/70 backdrop-blur-md border-t border-foreground/10 p-3">
             <p className="text-xs text-muted-foreground line-clamp-2">
               {frame.app_name && <span className="mr-2">{frame.app_name}</span>}
               {frameText}
@@ -225,9 +225,9 @@ export function TimelineSection() {
             >
               <ChevronLeft className="w-4 h-4" />
             </Button>
-            <div className="flex-1 h-1 bg-border relative rounded-full overflow-hidden">
+            <div className="flex-1 h-1 bg-foreground/10 relative rounded-full overflow-hidden">
               <div
-                className="absolute top-0 left-0 h-full bg-foreground transition-all duration-fast rounded-full"
+                className="absolute top-0 left-0 h-full bg-primary shadow-glow transition-all duration-fast rounded-full"
                 style={{ width: `${((current + 1) / frames.length) * 100}%` }}
               />
             </div>
@@ -248,11 +248,11 @@ export function TimelineSection() {
               data-active={i === current ? "true" : "false"}
               onClick={() => goToFrame(i)}
               className={cn(
-                "flex-shrink-0 w-20 h-14 rounded-md border text-[10px] transition-colors duration-fast",
+                "flex-shrink-0 w-20 h-14 rounded-lg border text-[10px] transition-colors duration-fast",
                 i === current
-                  ? "border-foreground bg-accent text-foreground"
-                  : "border-border text-muted-foreground hover:border-foreground/40 hover:bg-accent/50",
-                i === frames.length - 1 && followLatestRef.current && !isGloballyPaused && "ring-2 ring-foreground/20"
+                  ? "border-primary/50 bg-primary/15 text-foreground shadow-glow"
+                  : "border-foreground/10 text-muted-foreground hover:border-foreground/25 hover:bg-foreground/[0.06]",
+                i === frames.length - 1 && followLatestRef.current && !isGloballyPaused && "ring-2 ring-primary/40"
               )}
             >
               {formatFrameTime(f.timestamp)}

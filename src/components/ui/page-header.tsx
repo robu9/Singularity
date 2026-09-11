@@ -16,7 +16,7 @@ interface PageHeaderProps extends Omit<React.HTMLAttributes<HTMLElement>, "title
 function PageHeader({ title, description, actions, className, children, ...props }: PageHeaderProps) {
   return (
     <header
-      className={cn("shrink-0 border-b border-border bg-background px-6 py-5", className)}
+      className={cn("shrink-0 border-b border-foreground/10 px-6 py-5", className)}
       {...props}
     >
       <div className="flex items-start justify-between gap-4">

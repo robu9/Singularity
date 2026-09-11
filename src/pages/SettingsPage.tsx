@@ -433,7 +433,7 @@ export function SettingsPage() {
     <>
       {SETTINGS_NAV.map((group) => (
         <div key={group.label} className="mb-3 last:mb-0">
-          <div className="px-2.5 py-1.5 text-xs font-medium text-muted-foreground">
+          <div className="px-2.5 pb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/50">
             {group.label}
           </div>
           <div className="space-y-0.5">

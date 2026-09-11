@@ -130,7 +130,7 @@ export function WorkflowsSection() {
                 ) : null}
               </div>
               {output ? (
-                <pre className="text-xs font-mono text-muted-foreground whitespace-pre-wrap rounded-md border border-border bg-surface p-3 max-h-40 overflow-y-auto scrollbar-minimal">
+                <pre className="text-xs font-mono text-muted-foreground whitespace-pre-wrap rounded-lg border border-foreground/10 bg-surface/40 p-3 max-h-40 overflow-y-auto scrollbar-minimal">
                   {output}
                 </pre>
               ) : null}

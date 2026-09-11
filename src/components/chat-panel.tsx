@@ -90,16 +90,16 @@ function MessageBlock({ message }: { message: ChatMessage }) {
         className={cn(
           "min-w-0 max-w-[85%] rounded-lg px-4 py-3 text-sm leading-relaxed",
           isUser
-            ? "whitespace-pre-wrap bg-primary text-primary-foreground"
+            ? "whitespace-pre-wrap bg-primary text-primary-foreground shadow-glow"
             : [
-                "prose prose-sm max-w-none break-words border border-border bg-surface text-foreground",
+                "glass-panel prose prose-sm max-w-none break-words text-foreground",
                 "prose-headings:mb-2 prose-headings:mt-4 prose-headings:text-foreground",
                 "prose-p:my-2 prose-p:text-foreground prose-ul:my-2 prose-ol:my-2",
                 "prose-li:my-0.5 prose-li:text-foreground prose-strong:text-foreground",
-                "prose-blockquote:border-border prose-blockquote:text-muted-foreground",
+                "prose-blockquote:border-foreground/15 prose-blockquote:text-muted-foreground",
                 "prose-a:text-primary prose-a:cursor-pointer prose-a:no-underline hover:prose-a:underline",
                 "prose-code:break-words prose-code:font-mono prose-code:text-foreground prose-code:before:content-none prose-code:after:content-none",
-                "prose-pre:max-w-full prose-pre:overflow-x-auto prose-pre:whitespace-pre prose-pre:rounded-md prose-pre:border prose-pre:border-border prose-pre:bg-surface-secondary",
+                "prose-pre:max-w-full prose-pre:overflow-x-auto prose-pre:whitespace-pre prose-pre:rounded-lg prose-pre:border prose-pre:border-foreground/10 prose-pre:bg-surface-secondary/60",
                 "prose-table:my-2 prose-th:text-foreground prose-td:text-foreground",
                 "[&>*:first-child]:mt-0 [&>*:last-child]:mb-0",
               ]
@@ -260,7 +260,7 @@ export function ChatPanel({ className }: { className?: string }) {
         </div>
       </div>
 
-      <div className="p-4 shrink-0 border-t border-border bg-background">
+      <div className="p-4 shrink-0 border-t border-foreground/10 bg-background/40 backdrop-blur-md">
         <div className="max-w-3xl mx-auto flex flex-col gap-2">
           {(isDictating || isTranscribing) && (
             <div className="flex items-center gap-3 text-xs text-muted-foreground">
@@ -274,7 +274,7 @@ export function ChatPanel({ className }: { className?: string }) {
                   <span className="tabular-nums">
                     {seconds}s / {DICTATION_MAX_SECONDS}s
                   </span>
-                  <span className="ml-auto h-1.5 w-24 overflow-hidden rounded-full bg-border">
+                  <span className="ml-auto h-1.5 w-24 overflow-hidden rounded-full bg-foreground/10">
                     <span
                       className="block h-full rounded-full bg-primary transition-[width] duration-100"
                       style={{ width: `${Math.round(level * 100)}%` }}

@@ -39,6 +39,8 @@ export interface NavItem<Id extends string> {
   label: string;
   description: string;
   icon: React.ElementType;
+  /** Optional uppercase rail heading this item is grouped under. */
+  group?: string;
 }
 
 export const MAIN_NAV: NavItem<MainSection>[] = [
@@ -47,36 +49,42 @@ export const MAIN_NAV: NavItem<MainSection>[] = [
     label: "Assistant",
     description: "Ask anything about what you have captured",
     icon: MessageSquare,
+    group: "Workspace",
   },
   {
     id: "timeline",
     label: "History",
     description: "Every screen snapshot Singularity has taken",
     icon: Clock,
+    group: "Workspace",
   },
   {
     id: "workflows",
     label: "Routines",
     description: "Scheduled automations over your captured context",
     icon: Workflow,
+    group: "Automate",
   },
   {
     id: "meetings",
     label: "Recordings",
     description: "Recorded conversations, transcripts, and notes",
     icon: NotebookPen,
+    group: "Capture",
   },
   {
     id: "brain",
     label: "Memory",
     description: "The graph of what Singularity remembers",
     icon: Brain,
+    group: "Know",
   },
   {
     id: "connections",
     label: "Integrations",
     description: "Third-party apps connected through Composio",
     icon: Blocks,
+    group: "Connect",
   },
   {
     id: "help",
@@ -85,6 +93,9 @@ export const MAIN_NAV: NavItem<MainSection>[] = [
     icon: LifeBuoy,
   },
 ];
+
+/** Ordered list of the group headings above, for rendering the sidebar rail. */
+export const MAIN_NAV_GROUPS = ["Workspace", "Automate", "Capture", "Know", "Connect"] as const;
 
 export const SETTINGS_LABEL = "Preferences";
 export const SETTINGS_ICON = SettingsIcon;

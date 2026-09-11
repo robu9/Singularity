@@ -16,7 +16,7 @@ function SettingRow({ label, description, children, className, ...props }: Setti
   return (
     <div
       className={cn(
-        "flex items-center justify-between gap-4 border-b border-border py-4 last:border-b-0",
+        "flex items-center justify-between gap-4 border-b border-foreground/10 py-4 last:border-b-0",
         className
       )}
       {...props}

@@ -78,8 +78,8 @@ export function SearchPage() {
 
   return (
     <div className="flex min-h-screen items-start justify-center bg-transparent px-4 pt-16">
-      <div className="w-full max-w-2xl overflow-hidden rounded-xl border border-border bg-popover shadow-2xl">
-        <div className="flex items-center border-b border-border">
+      <div className="glass-panel w-full max-w-2xl overflow-hidden rounded-2xl">
+        <div className="flex items-center border-b border-foreground/10">
           <Search className="w-4 h-4 ml-4 text-muted-foreground shrink-0" />
           <Input
             autoFocus
@@ -110,7 +110,7 @@ export function SearchPage() {
             <button
               key={`${r.content.frame_id ?? r.content.audio_chunk_id ?? i}`}
               onClick={() => openResult(r)}
-              className="flex w-full items-center justify-between gap-4 border-b border-border px-4 py-3 text-left transition-colors duration-fast hover:bg-accent"
+              className="flex w-full items-center justify-between gap-4 border-b border-foreground/10 px-4 py-3 text-left transition-colors duration-fast hover:bg-foreground/[0.06]"
             >
               <div className="min-w-0">
                 <span className="mr-2 text-xs font-medium text-muted-foreground">

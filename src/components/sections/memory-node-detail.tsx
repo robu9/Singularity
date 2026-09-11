@@ -38,11 +38,11 @@ function Section({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="rounded-md border border-border">
+    <div className="rounded-lg border border-foreground/10">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-3 py-2 hover:bg-accent transition-colors duration-fast rounded-md"
+        className="w-full flex items-center justify-between px-3 py-2 hover:bg-foreground/[0.06] transition-colors duration-fast rounded-lg"
       >
         <span className="text-xs font-medium text-foreground">{title}</span>
         <ChevronDown
@@ -87,11 +87,11 @@ export function MemoryNodeDetail({
   return (
     <div
       className={cn(
-        "flex flex-col rounded-lg border border-border bg-background/95 backdrop-blur-sm shadow-md",
+        "glass-panel flex flex-col rounded-xl",
         pinned ? "h-full" : "max-h-[min(70vh,520px)]"
       )}
     >
-      <div className="px-4 py-3 border-b border-border flex items-start justify-between gap-3 shrink-0">
+      <div className="px-4 py-3 border-b border-foreground/10 flex items-start justify-between gap-3 shrink-0">
         <div className="min-w-0 flex-1">
           <Badge variant="outline" className="mb-2">
             {nodeTypeLabel(node.type)}
@@ -130,7 +130,7 @@ export function MemoryNodeDetail({
           {connections.length === 0 ? (
             <p className="text-xs text-muted-foreground">Nothing links to this yet.</p>
           ) : (
-            <div className="flex flex-col rounded-md border border-border overflow-hidden">
+            <div className="flex flex-col rounded-lg border border-foreground/10 overflow-hidden">
               {connections.map((link) => {
                 const source = linkEndpointId(link.source);
                 const target = linkEndpointId(link.target);
@@ -142,7 +142,7 @@ export function MemoryNodeDetail({
                     key={`${source}-${target}-${link.relation}`}
                     type="button"
                     onClick={() => onNavigate?.(otherId)}
-                    className="flex items-center justify-between px-3 py-2 border-b border-border last:border-b-0 hover:bg-accent transition-colors duration-fast text-left"
+                    className="flex items-center justify-between px-3 py-2 border-b border-foreground/10 last:border-b-0 hover:bg-foreground/[0.06] transition-colors duration-fast text-left"
                   >
                     <span className="text-xs truncate min-w-0">{other.label}</span>
                     <span className="ml-2 shrink-0 text-xs text-muted-foreground">

@@ -18,7 +18,14 @@ export default {
           "Segoe UI",
           "sans-serif",
         ],
-        heading: ["Fraunces", "Times New Roman", "serif"],
+        heading: [
+          "Figtree",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "sans-serif",
+        ],
         mono: ["IBM Plex Mono", "ui-monospace", "Menlo", "Consolas", "monospace"],
       },
       fontSize: {
@@ -95,6 +102,11 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        glass: "0 8px 32px -8px hsl(0 0% 0% / 0.45), inset 0 1px 0 0 hsl(0 0% 100% / 0.06)",
+        "glass-sm": "0 2px 12px -4px hsl(0 0% 0% / 0.35), inset 0 1px 0 0 hsl(0 0% 100% / 0.05)",
+        glow: "0 0 0 1px hsl(var(--primary) / 0.4), 0 0 24px 0 hsl(var(--glow) / 0.45)",
       },
       // Motion scale. fast: hover and color changes. base: transforms and
       // panel state. slow: window-scale transitions (sidebar width, crossfades).

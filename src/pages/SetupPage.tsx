@@ -43,7 +43,7 @@ export function SetupPage() {
   const needsKey = status.error?.code === "PROVIDER_KEY_REQUIRED";
 
   return (
-    <main className="drag-region flex min-h-screen flex-col bg-background p-8 text-foreground">
+    <main className="drag-region flex min-h-screen flex-col bg-transparent p-8 text-foreground">
       <div className="flex items-center gap-2">
         <span className="text-sm font-semibold tracking-tight">Singularity</span>
       </div>
@@ -59,14 +59,14 @@ export function SetupPage() {
         </div>
 
         <div
-          className="h-1.5 overflow-hidden rounded-full bg-muted"
+          className="h-1.5 overflow-hidden rounded-full bg-foreground/10"
           role="progressbar"
           aria-valuenow={status.progress}
           aria-valuemin={0}
           aria-valuemax={100}
         >
           <div
-            className="h-full rounded-full bg-primary transition-[width] duration-slow"
+            className="h-full rounded-full bg-primary shadow-glow transition-[width] duration-slow"
             style={{ width: `${status.progress}%` }}
           />
         </div>

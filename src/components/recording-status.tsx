@@ -56,16 +56,16 @@ export function RecordingStatus({ floatingOverMedia }: RecordingStatusProps) {
       <PopoverTrigger asChild>
         <button
           className={cn(
-            "flex items-center gap-2 h-8 px-3 rounded-md text-xs font-medium transition-colors duration-fast border",
+            "flex items-center gap-2 h-8 px-3 rounded-lg text-xs font-medium transition-colors duration-fast border",
             floatingOverMedia
-              ? "border-border/60 bg-background/80 backdrop-blur-sm"
-              : "border-border bg-background hover:bg-accent"
+              ? "border-foreground/10 bg-background/60 backdrop-blur-md"
+              : "border-foreground/10 bg-foreground/[0.03] hover:bg-foreground/[0.07]"
           )}
         >
           <span
             className={cn(
               "w-2 h-2 rounded-full",
-              isActive && "bg-foreground",
+              isActive && "bg-primary shadow-glow",
               isScreenPaused && devices.length > 0 && "bg-muted-foreground",
               devices.length === 0 && "bg-muted-foreground/40",
               meetingActive && isActive && "animate-pulse"
@@ -76,7 +76,7 @@ export function RecordingStatus({ floatingOverMedia }: RecordingStatusProps) {
         </button>
       </PopoverTrigger>
       <PopoverContent align="end" className="w-72 p-0">
-        <div className="px-4 py-3 border-b border-border">
+        <div className="px-4 py-3 border-b border-foreground/10">
           <span className="text-sm font-medium text-foreground">Recording</span>
         </div>
         <div className="flex flex-col">
@@ -90,7 +90,7 @@ export function RecordingStatus({ floatingOverMedia }: RecordingStatusProps) {
                 key={device.fullName}
                 className={cn(
                   "flex items-center justify-between px-4 py-2.5 text-sm",
-                  !isMonitor && "hover:bg-accent transition-colors duration-fast"
+                  !isMonitor && "hover:bg-foreground/[0.06] transition-colors duration-fast"
                 )}
               >
                 <div className="flex items-center gap-2.5">
@@ -118,7 +118,7 @@ export function RecordingStatus({ floatingOverMedia }: RecordingStatusProps) {
             );
           })}
         </div>
-        <div className="p-3 flex flex-col gap-2 border-t border-border">
+        <div className="p-3 flex flex-col gap-2 border-t border-foreground/10">
           <Button
             variant="outline"
             size="sm"
